@@ -11,7 +11,7 @@ import jp.te4a.app2.facility2.form.UserForm;
 import jp.te4a.app2.facility2.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdminController {
 
         @GetMapping("/admin-home")
