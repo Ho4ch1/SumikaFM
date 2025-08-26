@@ -11,26 +11,25 @@ import jp.te4a.app2.facility2.form.UserForm;
 import jp.te4a.app2.facility2.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdminController {
 
-        @GetMapping("/admin-home")
-        public String SelectFunction() {
-            return "/admin/admin-home";
-        }
+    @GetMapping
+    public String redirectToHome() {
+        return "redirect:/admin/admin-home";
+    }
 
-        /*
-        @GetMapping("create-user") 
-        public String createUser() {
-            return "/auth";
-        } 
-        */
-        
-        @Autowired
-        UserService userService;
+    @GetMapping("admin-home")
+    public String selectFunction() {
+        return "/admin/admin-home";
+    }
 
-        @ModelAttribute
-        UserForm setUpForm() {
-            return new UserForm();
-        }
+    @Autowired
+    UserService userService;
+
+    @ModelAttribute
+    UserForm setUpForm() {
+        return new UserForm();
+    }
 }
+
