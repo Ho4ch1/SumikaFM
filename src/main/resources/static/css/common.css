@@ -83,6 +83,17 @@ img {
   margin-bottom: 10px;
 }
 
+/* ユーザー名とログアウトを横並びにする */
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ユーザー名とボタンの間の余白 */
+}
+
+.username {
+  color: #fff; /* 背景が暗い場合は白文字に */
+  font-weight: bold;
+}
 
 .logoutBtn {
   height: 25px;
