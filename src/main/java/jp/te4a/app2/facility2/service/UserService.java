@@ -1,29 +1,30 @@
 package jp.te4a.app2.facility2.service;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import jp.te4a.app2.facility2.bean.UserBean;
 import jp.te4a.app2.facility2.form.UserForm;
 import jp.te4a.app2.facility2.repository.UserRepository;
 
-
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
-    public UserForm create(UserForm userForm) {
-        // パスワードをエンコード
-        userForm.setPassword(new BCryptPasswordEncoder().encode(userForm.getPassword()));
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-        UserBean userBean = new UserBean();
-        BeanUtils.copyProperties(userForm, userBean);
+    public void create(UserForm form) {
+        UserBean user = new UserBean();
+        user.setUsername(form.getUsername());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setRole(form.getRole()); // role をセット
+        userRepository.save(user); // DB に保存
+    }
 
-        userRepository.save(userBean);
-        return userForm;
+    public UserBean findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
 }
