@@ -3,20 +3,17 @@ package jp.te4a.app2.facility2.security;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import jp.te4a.app2.facility2.bean.UserBean;
-import lombok.Data;
 
-@Data
-public class LoginUserDetails extends User{
-    //認証に使うユーザクラス
+import jp.te4a.app2.facility2.bean.UserBean;
+import lombok.Getter;
+
+@Getter
+public class LoginUserDetails extends User {
+
     private final UserBean user;
-    //認証ユーザ作成(コンストラクタ)
-    public LoginUserDetails(UserBean userBean,
-    boolean accountNonExpried,      //アカウント無効
-    boolean credenttialsNonExpired, //認証無効
-    boolean accountNonLocked,       //ロック状態を設定可能　今回は全て該当なし(true)でユーザ認証
-    Collection<GrantedAuthority> authorities) {
-        super(userBean.getUsername(),userBean.getPassword(),true,true,true,true,authorities);
+
+    public LoginUserDetails(UserBean userBean, Collection<? extends GrantedAuthority> authorities) {
+        super(userBean.getUsername(), userBean.getPassword(), authorities);
         this.user = userBean;
     }
 }

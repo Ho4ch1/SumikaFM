@@ -75,6 +75,11 @@ public class FacilityController {
         return "redirect:/facilities";
     }
 
+    @GetMapping("/readonly-facility-list")
+    public String readonlyList(Model model) {
+        model.addAttribute("facilities", facilityService.findAll());
+        return "facilities/readonly-facility-list";
+    }
 
 
 
