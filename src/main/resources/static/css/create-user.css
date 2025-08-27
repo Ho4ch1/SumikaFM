@@ -34,7 +34,12 @@ body {
 
 input:focus {
   outline: 2px solid #3ba1f4;
-  box-shadow: 0 0 0 2px rgba(79, 79, 79, 0.3); /* 任意で影も */
+  box-shadow: 0 0 0 2px rgba(79, 79, 79, 0.3);
+}
+
+select:focus {
+  outline: 2px solid #3ba1f4;
+  box-shadow: 0 0 0 2px rgba(79, 79, 79, 0.3); 
 }
 
 form {
@@ -49,8 +54,31 @@ form {
     border: 1px solid #000000;
     border-radius: 5px;
 }
+
+.select-group {
+    margin-bottom: 30px;
+    display: flex;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
   
 .input-icon-box {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000000;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 5px 0 0 5px;
+    color: rgb(79, 79, 79);
+    flex-shrink: 0;
+}
+
+.select-icon-box {
     width: 35px;
     height: 35px;
     background-color: white;
@@ -79,6 +107,26 @@ form {
 }
   
 .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.select-group .form-control-permission {
+    height: 35px;
+    border-radius: 0 5px 5px 0; /* 右側だけ角を丸める */
+    width: 100%;
+    border: none;
+}
+
+.select-group label {
+    color: #ffffff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.select-group input {
     width: 100%;
     padding: 10px;
     border: none;
@@ -135,6 +183,20 @@ button:hover {
 
     .input-group .form-control {
         height: 25px;
+    }
+
+    .select-group {
+        margin-bottom: 10px;
+    }
+
+    .select-icon-box {
+        width: 25px;
+        height: 25px;
+    }
+
+    .select-group .form-control-permission {
+        height: 25px;
+        width: 100%;
     }
 
     button {

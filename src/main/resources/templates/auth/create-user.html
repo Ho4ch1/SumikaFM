@@ -32,23 +32,26 @@
             <div class="container">
                 <h2>ユーザー作成</h2>
                 <form th:action="@{/auth/create}" th:object="${userForm}" method="post">
+                    
                     <div class="input-group">  
                         <span class="input-icon-box">
                             <i class="fa fa-user"></i>
                         </span>
                         <input class="form-control" type="text" name="username" th:field="*{username}" placeholder="ログインID" th:errorclass="error-input" />
                     </div>
+
                     <div class="input-group">  
                         <span class="input-icon-box">
                             <i class="fa fa-lock"></i>
                         </span>
                         <input class="form-control" type="text" name="password" th:field="*{password}" placeholder="パスワード" th:errorclass="error-input" />
                     </div> 
-                    <div class="input-group">
-                        <span class="input-icon-box">
+
+                    <div class="select-group">
+                        <span class="select-icon-box">
                             <i class="fa fa-shield"></i>
                         </span>
-                        <select class="form-control" th:field="*{role}">
+                        <select class="form-control-permission" th:field="*{role}">
                             <option value="ROLE_USER">一般ユーザー</option>
                             <option value="ROLE_ADMIN">管理者</option>
                         </select>
