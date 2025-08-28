@@ -27,12 +27,12 @@ public class AdminController {
     FacilityForm setUpForm() {
         return new FacilityForm();
     }
-    //facilitiesにGET要求
+    /*facilitiesにGET要求
     @GetMapping
     String list(Model model) {
         model.addAttribute("facilities", facilityService.findAll());
         return "admin/admin-facility-list";
-    }
+    }*/
 
 }
 
