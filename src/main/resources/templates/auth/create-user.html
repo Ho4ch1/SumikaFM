@@ -16,13 +16,12 @@
                 <a class="header-logo" th:href="@{/select-permission}">
                     <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
-                <div class="user-area">
-                    <p>
-                      <span sec:authentication="principal.username">duke</span>
-                    </p>
-                    <form th:action="@{/logout}" method="post">
-                        <input class="logoutBtn" type="submit" value="ログアウト" />
-                    </form>
+                <div>
+                    <nav class="site-menu">
+                        <ul>
+                            <form  th:action="@{/logout}" method="post"><input  class="logoutBtn" type="submit" value="ログアウト" /></form>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </header>
@@ -74,5 +73,5 @@
             </div>
         </footer>
         <!-- footer ここまで -->
-    </body>
+    </body> 
 </html>
