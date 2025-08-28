@@ -21,9 +21,9 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                             .anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"));
 
         if(isAdmin) {
-            response.sendRedirect(request.getContextPath() + "/admin/admin-home");
+            response.sendRedirect(request.getContextPath() + "/admin");
         } else {
-            response.sendRedirect(request.getContextPath() + "/facilities/readonly-facility-list");
+            response.sendRedirect(request.getContextPath() + "/readonly");
         }
     }
 }
