@@ -50,7 +50,7 @@ public class SecurityConfig {
         // 静的リソースは全員アクセス可能
         .requestMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
         // ログインページと登録ページは全員アクセス可能
-        .requestMatchers("/login", "/auth", "/auth/create").permitAll()
+        .requestMatchers("/login", "/auth", "/auth/create-user").permitAll()
         // Admin専用
         .requestMatchers("/admin/**").hasRole("ADMIN")
         // Readonly専用

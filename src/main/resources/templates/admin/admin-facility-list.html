@@ -45,7 +45,7 @@
                                 <!-- 他のIDを追加 -->
                             </select>
                             品名:
-                            <select name="name" th:field="*{name}" th:errorclass="error-input">
+                            <select name="product" th:field="*{product}" th:errorclass="error-input">
                                 <option value="">未選択</option>
                                 <option value="ノートPC">ノートPC</option>
                                 <option value="キーボード">キーボード</option>
@@ -62,7 +62,7 @@
                                 <option value="電話機">電話機</option>    
                                 <!-- 他の品名を追加 -->
                             </select>
-                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-messages">※入力必須</span>
+                            <span th:if="${#fields.hasErrors('product')}" th:errors="*{product}" class="error-messages">※入力必須</span>
                             メーカー:
                             <select name="manufacturer">
                                 <option value="">未選択</option>
@@ -94,21 +94,21 @@
             </div>
             <div class="action-buttons">
                 <!-- 登録フォーム：チェックボックスとは無関係 -->
-                <form th:action="@{/facilities/register}" method="post">
+                <form th:action="@{/admin/register}" method="post">
                     <div id="action-buttons-register">
                         <button type="submit" id="registerBtn">登録</button>
                     </div>
                 </form>
         
                 <!-- 編集フォーム：チェックされたIDをPOST -->
-                <form th:action="@{/facilities/editSelected}" method="post">
+                <form th:action="@{/edit}" method="post">
                     <div id="action-buttons-edit">
                         <button type="submit" id="editBtn" disabled>編集</button>
                     </div>
                 </form>
 
                 <!-- 削除フォーム：チェックされたIDをPOST -->
-                <form th:action="@{/facilities/delete}" method="post">
+                <form th:action="@{/delete}" method="post">
                     <div id="action-buttons-delete">
                         <button type="submit" id="deleteBtn" disabled>削除</button>
                     </div>
@@ -140,7 +140,7 @@
                             <tr th:each="facility : ${facilities}">
                                 <td><input type="checkbox" name="selectedIds" th:value="${facility.id}" /></td>
                                 <td th:text="${facility.id}">0</td>
-                                <td th:text="${facility.name}">品名</td>
+                                <td th:text="${facility.product}">品名</td>
                                 <td th:text="${facility.modelNumber}">型番</td>
                                 <td th:text="${facility.manufacturer}">メーカー</td>
                                 <td th:text="${facility.specification}">仕様</td>

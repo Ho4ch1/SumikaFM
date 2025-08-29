@@ -27,7 +27,7 @@ public class UserController {
     String list(Model model) {
         return "auth/create-user";
     }
-    @PostMapping(path="create")
+    @PostMapping(path="create-user")
     String create(@Validated UserForm form,BindingResult result,Model model) {
         if(result.hasErrors()) {
             return list(model);
