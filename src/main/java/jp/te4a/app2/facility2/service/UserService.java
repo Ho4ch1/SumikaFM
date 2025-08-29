@@ -17,11 +17,17 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public void create(UserForm form) {
+        //フォームから username を取り出す
+        String username = form.getUsername();
+        // ここで重複チェック
+        if (userRepository.existsByUsername(username)) {
+            throw new IllegalArgumentException("このユーザー名は既に使われています");
+        }
         UserBean user = new UserBean();
-        user.setUsername(form.getUsername());
+        user.setUsername(username);
         user.setPassword(passwordEncoder.encode(form.getPassword()));
-        user.setRole(form.getRole()); // role をセット
-        userRepository.save(user); // DB に保存
+        user.setRole(form.getRole());
+        userRepository.save(user);
     }
 
     public UserBean findByUsername(String username) {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 
 import jp.te4a.app2.facility2.form.UserForm;
 import jp.te4a.app2.facility2.service.UserService;
@@ -28,11 +28,19 @@ public class UserController {
         return "auth/create-user";
     }
     @PostMapping(path="create-user")
-    String create(@Validated UserForm form,BindingResult result,Model model) {
+    String create(@Validated UserForm form, BindingResult result, Model model) {
         if(result.hasErrors()) {
             return list(model);
         }
-        userService.create(form);
-        return "redirect:/auth";
+        try {
+            userService.create(form);
+            return "redirect:/auth";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "auth/create-user";
+        } catch (Exception e) {
+            model.addAttribute("error", "登録に失敗しました");
+            return "auth/create-user";
+        }
     }
 }
