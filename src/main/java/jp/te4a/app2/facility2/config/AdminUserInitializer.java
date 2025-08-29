@@ -19,8 +19,8 @@ public class AdminUserInitializer {
                 },
                 () -> {
                     UserBean admin = new UserBean();
-                    admin.setUsername("hitonai");
-                    admin.setPassword(passwordEncoder.encode("admin")); // 初期パスワード
+                    admin.setUsername("a");
+                    admin.setPassword(passwordEncoder.encode("a")); // 初期パスワード
                     admin.setRole("ROLE_ADMIN");
                     userRepository.save(admin);
                 }
