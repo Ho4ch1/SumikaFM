@@ -1,0 +1,45 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('input[name="selectedIds"]');
+    const editBtn = document.getElementById('editBtn');
+    const deleteBtn = document.getElementById('deleteBtn');
+  
+    // 排他選択とボタン制御
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          checkboxes.forEach((cb) => {
+            if (cb !== checkbox) cb.checked = false;
+          });
+          editBtn.disabled = false;
+          deleteBtn.disabled = false;
+        } else {
+          const anyChecked = Array.from(checkboxes).some((cb) => cb.checked);
+          if (!anyChecked) {
+            editBtn.disabled = true;
+            deleteBtn.disabled = true;
+          }
+        }
+      });
+    });
+  
+    // submit時にhiddenで値を渡す
+    ['editBtn', 'deleteBtn'].forEach((id) => {
+      const btn = document.getElementById(id);
+      const form = btn.closest('form');
+  
+      form.addEventListener('submit', function (e) {
+        const checked = document.querySelector('input[name="selectedIds"]:checked');
+        if (checked) {
+          const hidden = document.createElement('input');
+          hidden.type = 'hidden';
+          hidden.name = 'selectedIds';
+          hidden.value = checked.value;
+          this.appendChild(hidden);
+        } else {
+          e.preventDefault();
+          alert('1つ選択してください');
+        }
+      });
+    });
+  });
+  

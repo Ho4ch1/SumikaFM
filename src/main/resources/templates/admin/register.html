@@ -16,7 +16,7 @@
                     <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
-                  <p>
+                  <p class="login-user">
                     <span sec:authentication="principal.username">duke</span>
                   </p>
                   <form th:action="@{/logout}" method="post">

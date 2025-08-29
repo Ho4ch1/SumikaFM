@@ -16,7 +16,7 @@
                     <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
-                    <p>
+                    <p class="login-user">
                       <span sec:authentication="principal.username">duke</span>
                     </p>
                     <form th:action="@{/logout}" method="post">
@@ -33,7 +33,7 @@
                 <h1>設備管理システム</h1>
             </div>
                 <!-- 検索フォーム -->
-                <form th:action="@{/facilities/adminSearch}" th:object="${facilityForm}" method="post">
+                <form th:action="@{/readonly/readonlySearch}" th:object="${facilityForm}" method="post">
                     <table class="facility-search-table">
                         <div class="filters">
                             管理番号:

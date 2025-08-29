@@ -1,5 +1,6 @@
 package jp.te4a.app2.facility2.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -83,4 +84,17 @@ public class FacilityService {
         BeanUtils.copyProperties(facility, facilityForm);
         return facilityForm;
     }
+
+     public List<FacilityBean> search(Integer id, String name, String manufacturer, Integer serviceLife, String location) {
+        List<FacilityBean> result = facilityRepository.findAll(); // 全件取得からフィルター
+    
+        return result.stream()
+            .filter(bean -> id == null || bean.getId().equals(id))
+            .filter(bean -> name == null || bean.getProduct().contains(name))
+            .filter(bean -> manufacturer == null || bean.getManufacturer().contains(manufacturer))
+            .filter(bean -> serviceLife == null || bean.getServiceLife().equals(serviceLife))
+            .filter(bean -> location == null || bean.getLocation().contains(location))
+            .toList();
+    }
+
 }
