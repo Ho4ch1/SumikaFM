@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width">
         <script src=""></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
-        <link rel="stylesheet" href="../../static/css/create-user.css" th:href="@{/css/create-user.css}">
+        <link rel="stylesheet" th:href="@{/css/common.css}">
+        <link rel="stylesheet" th:href="@{/css/create-user.css}">
     </head>
     <body>
         <!-- header ここから -->
         <header class="header">
             <div class="header-inner">
                 <a class="header-logo" th:href="@{/select-permission}">
-                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                    <img th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
                   <p class="login-user">
@@ -70,7 +70,7 @@
         <footer class="footer">
             <div>
                 <a class="footer-logo" th:href="@{/select-permission}">
-                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                    <img th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <p class="copyright"><small>&copy; 2025 清夏 Facility Management System</small></p>
             </div>
