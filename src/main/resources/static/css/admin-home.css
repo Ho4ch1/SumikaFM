@@ -72,7 +72,7 @@ body {
     background-color: #0077d7;
 }
   
-.btn.user-create {
+.btn.create-user {
     flex: 1;
     height: 50px;
     white-space: normal;
