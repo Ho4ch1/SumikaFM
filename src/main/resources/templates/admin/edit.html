@@ -31,48 +31,48 @@
         <main class="main">
             <div class="container">
                 <h1>設備編集画面</h1>
-                <form class="register-form">
-                  <label>品名：<input type="text" name="品名" required></label>
-                  <label>型番：<input type="text" name="型番" required></label>
-                  <label>メーカー：<input type="text" name="メーカー"></label>
-                  <label>仕様：<input type="text" name="仕様"></label>
+                <form class="register-form" th:action="@{/admin/edit}" th:object="${facilityForm}" method="post">
+                  <label>品名：<input type="text" name="product" required></label>
+                  <label>型番：<input type="text" name="modelNumber" required></label>
+                  <label>メーカー：<input type="text" name="manufacturer"></label>
+                  <label>仕様：<input type="text" name="specification"></label>
             
                   <label>耐用年数：
-                    <select name="耐用年数">
+                    <select name="serviceLife">
                       <option value="0">0年</option>
                       <option value="4">4年</option>
                       <option value="6">6年</option>
                     </select>
                   </label>
             
-                  <label>購入日：<input type="date" name="購入日"></label>
+                  <label>購入日：<input type="date" name="purchaseDate"></label>
                   
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>貸出可否： <!-- 変更 -->
-                    <select name="貸出可否"> <!-- 変更 -->
-                      <option value="貸出可能">貸出可能</option>
-                      <option value="貸出不可">貸出不可</option>
+                    <select name="depreciation"> <!-- 変更 -->
+                      <option value="true">貸出可能</option>
+                      <option value="false">貸出不可</option>
                     </select>
                   </label>
 
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>使用可否： <!-- 変更 -->
-                    <select name="使用可否"> <!-- 変更 -->
-                      <option value="使用可">使用可</option>
-                      <option value="使用不可">使用不可</option>
+                    <select name="notAvailable"> <!-- 変更 -->
+                      <option value="true">使用可</option>
+                      <option value="false">使用不可</option>
                     </select>
                   </label>
             
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>貸出可否： <!-- 変更 -->
-                    <select name="貸出可否"> <!-- 変更 -->
-                      <option value="貸出可能">貸出可能</option>
-                      <option value="貸出不可">貸出不可</option>
+                    <select name="rentAble"> <!-- 変更 -->
+                      <option value="true">貸出可能</option>
+                      <option value="false">貸出不可</option>
                     </select>
                   </label>
             
                   <label>設置場所：
-                    <select name="設置場所">
+                    <select name="location">
                       <option value="東京本店">東京本店</option>
                       <option value="会計課">会計課</option>
                       <option value="設備管理課">設備管理課</option>
@@ -84,11 +84,11 @@
                     </select>
                   </label>
             
-                  <label>使用期限：<input type="date" name="使用期限"></label>
+                  <label>使用期限：<input type="date" name="expiry"></label>
             
                   <div class="form-buttons">
                     <button type="submit">保存</button>
-                    <a href="index.html" class="cancel-button">戻る</a>
+                    <a href="list" class="cancel-button">戻る</a>
                   </div>
                 </form>
             </div>
