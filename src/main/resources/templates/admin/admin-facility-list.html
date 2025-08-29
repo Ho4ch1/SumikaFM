@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>権限選択ページ</title>
         <meta name="viewport" content="width=device-width">
-        <script src=""></script>
+        <script src="/js/admin-Facility-list.js"></script>
         <link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
         <link rel="stylesheet" href="../../static/css/facility-list.css" th:href="@{/css/facility-list.css}">
         <link rel="stylesheet" th:href="@{/css/.css}">
@@ -34,7 +34,7 @@
                 <h1>設備管理システム</h1>
             </div>
                 <!-- 検索フォーム -->
-                <form th:action="@{/facilities/adminSearch}" th:object="${facilityForm}" method="post">
+                <form th:action="@{/admin/adminSearch}" th:object="${facilityForm}" method="post">
                     <table class="facility-search-table">
                         <div class="filters">
                             管理番号:
@@ -101,14 +101,14 @@
                 </form>
         
                 <!-- 編集フォーム：チェックされたIDをPOST -->
-                <form th:action="@{/edit}" method="post">
+                <form th:action="@{/admin/editSelected}" method="post">
                     <div id="action-buttons-edit">
                         <button type="submit" id="editBtn" disabled>編集</button>
                     </div>
                 </form>
 
                 <!-- 削除フォーム：チェックされたIDをPOST -->
-                <form th:action="@{/delete}" method="post">
+                <form th:action="@{/admin/delete}" method="post">
                     <div id="action-buttons-delete">
                         <button type="submit" id="deleteBtn" disabled>削除</button>
                     </div>

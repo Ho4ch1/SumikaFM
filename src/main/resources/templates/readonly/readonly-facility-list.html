@@ -33,7 +33,7 @@
                 <h1>設備管理システム</h1>
             </div>
                 <!-- 検索フォーム -->
-                <form th:action="@{/facilities/adminSearch}" th:object="${facilityForm}" method="post">
+                <form th:action="@{/readonly/readonlySearch}" th:object="${facilityForm}" method="post">
                     <table class="facility-search-table">
                         <div class="filters">
                             管理番号:
