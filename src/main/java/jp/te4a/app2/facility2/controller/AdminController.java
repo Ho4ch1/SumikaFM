@@ -51,7 +51,7 @@ public class AdminController {
             return "admin/register";
         }
         facilityService.save(facilityForm);
-        return "admin/admin-facility-list";
+        return "redirect:list";
     }
 
 }
