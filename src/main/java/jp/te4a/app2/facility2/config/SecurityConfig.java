@@ -45,11 +45,20 @@ public class SecurityConfig {
         .logout(logout -> logout
                 .logoutSuccessUrl("/login")
         )
+        // 認可設定
         .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
-                .requestMatchers("/login", "/auth", "/auth/create").permitAll()
-                .anyRequest().authenticated()
+        // 静的リソースは全員アクセス可能
+        .requestMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
+        // ログインページと登録ページは全員アクセス可能
+        .requestMatchers("/login", "/auth", "/auth/create-user").permitAll()
+        // Admin専用
+        .requestMatchers("/admin/**").hasRole("ADMIN")
+        // Readonly専用
+        .requestMatchers("/readonly/**").hasRole("USER")
+        // その他はログイン必須
+        .anyRequest().authenticated()
         );
+        
 
         return http.build();
     }

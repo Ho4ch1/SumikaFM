@@ -44,7 +44,7 @@
                                 <!-- 他のIDを追加 -->
                             </select>
                             品名:
-                            <select name="name" th:field="*{name}" th:errorclass="error-input">
+                            <select name="product" th:field="*{product}" th:errorclass="error-input">
                                 <option value="">未選択</option>
                                 <option value="ノートPC">ノートPC</option>
                                 <option value="キーボード">キーボード</option>
@@ -116,7 +116,7 @@
                             <tr th:each="facility : ${facilities}">
                                 <td><input type="checkbox" name="selectedIds" th:value="${facility.id}" /></td>
                                 <td th:text="${facility.id}">0</td>
-                                <td th:text="${facility.name}">品名</td>
+                                <td th:text="${facility.product}">品名</td>
                                 <td th:text="${facility.modelNumber}">型番</td>
                                 <td th:text="${facility.manufacturer}">メーカー</td>
                                 <td th:text="${facility.specification}">仕様</td>

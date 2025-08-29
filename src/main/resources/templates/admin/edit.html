@@ -46,9 +46,15 @@
                   </label>
             
                   <label>購入日：<input type="date" name="購入日"></label>
-            
-                  <label>減価償却額（円）：<input type="number" name="減価償却" min="0" step="1000"></label>
-            
+                  
+                  <!-- ▼変更：チェックボックス → セレクトボックス -->
+                  <label>貸出可否： <!-- 変更 -->
+                    <select name="貸出可否"> <!-- 変更 -->
+                      <option value="貸出可能">貸出可能</option>
+                      <option value="貸出不可">貸出不可</option>
+                    </select>
+                  </label>
+
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>使用可否： <!-- 変更 -->
                     <select name="使用可否"> <!-- 変更 -->
