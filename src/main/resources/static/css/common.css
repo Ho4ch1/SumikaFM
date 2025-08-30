@@ -102,10 +102,11 @@ img {
 .logoutBtn {
   height: 25px;
   width: 80px;
-  background-color: #fafeff;
+  color: white;
+  background-color: #0077d7;
   border-radius: 5px;
-  border-color:rgb(0, 0, 0);
-  box-shadow: 0  3px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 
 }
 

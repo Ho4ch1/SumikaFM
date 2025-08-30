@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById("toggleSearchBtn");
+    const searchBox = document.getElementById("searchBox");
+
+    toggleBtn.addEventListener("click", function() {
+        if (searchBox.style.display === "none") {
+            searchBox.style.display = "block";
+            toggleBtn.textContent = "閉じる";
+        } else {
+            searchBox.style.display = "none";
+            toggleBtn.textContent = "設備検索";
+        }
+    });
     const checkboxes = document.querySelectorAll('input[name="selectedIds"]');
     const editBtn = document.getElementById('editBtn');
     const deleteBtn = document.getElementById('deleteBtn');
@@ -42,4 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  
+
   

@@ -1,5 +1,14 @@
-function toggleSearchForm() {
-    const wrapper = document.getElementById("searchFormWrapper");
-    wrapper.classList.toggle("hidden");
-    btn.textContent = wrapper.classList.contains("hidden") ? "検索フォームを開く" : "検索フォームを閉じる";
-}
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById("toggleSearchBtn");
+    const searchBox = document.getElementById("searchBox");
+
+    toggleBtn.addEventListener("click", function() {
+        if (searchBox.style.display === "none") {
+            searchBox.style.display = "block";
+            toggleBtn.textContent = "閉じる";
+        } else {
+            searchBox.style.display = "none";
+            toggleBtn.textContent = "設備検索";
+        }
+    });
+});

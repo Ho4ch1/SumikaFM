@@ -2,23 +2,86 @@ body {
   font-family: 'Segoe UI', sans-serif;
   overflow-x: auto; /* 横スクロール対応 */
 }
+/* 検索フォーム */
 
+.filters {
+  display: grid;
+  gap: 10px 20px; /* 行と列の間隔 */
+  align-items: center;
+}
+
+.pulldown-menu {
+  border-radius: 5px;
+  width:100%;
+  box-sizing: border-box;
+}
+
+.search-box {
+  max-width: 300px;
+  margin: 30px 30px 40px 30px;
+  padding: 20px;
+  color: white;
+  background-color: #4f4f4f;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+}
+  
+.table-wrapper {
+  margin-top: 20px; /* フォームと重ならないように間隔を空ける */
+}
+
+  .search-box table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .search-box td {
+    padding: 10px;
+  }
+  
+  .search-box select {
+    padding: 5px;
+    font-size: 16px;
+  }
+  .search-toggle-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0077d7;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 20px 20px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .search-toggle-btn:hover {
+    transform: translateY(-2px);
+    background-color: #0077d7;
+  }
+  /* 検索ボタン */
+  .search-btn{    
+    background-color: #0077d7;
+    color: white;
+    font-size: 16px;
+  }
+  .search-box input[type="submit"] {
+    margin-top: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .search-box input[type="submit"]:hover {
+    opacity: 0.85;
+  }
 .container {
   min-width: 1200px; /* 最小幅を確保して潰れ防止 */
   margin: auto;
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.filters {
-  gap: 10px;
-  margin-bottom: 20px;
-  height: 30px;
-  padding: 20px;
-}
 .action-buttons{
   display: flex;
   gap: 10px;
@@ -39,7 +102,7 @@ input[type="search"] {
 }
 
 table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
   background: white;
   min-width: 1200px;
@@ -51,7 +114,7 @@ th {
   text-align: center;
   font-size: 14px;
   white-space: nowrap;
-  background-color: #4a90e2;
+  background-color: #0077d7;
   color: white;
 }
 
@@ -62,10 +125,6 @@ td {
   font-size: 14px;
   white-space: nowrap;
   color: black;
-}
-
-.filters-pull {
-
 }
 
 tr:nth-child(even) {
@@ -80,20 +139,20 @@ tr:nth-child(even) {
 .action-buttons-register {
   border: none;
   color: white;
-  background-color: #4a90e2;
+  background-color: #0077d7;
 }
 
 .action-buttons-edit {
   border: none;
   color: white;
-  background-color: #4a90e2;
+  background-color: #0077d7;
 }
 
 .action-buttons-delete {
   padding: 10px 20px;
   border: none;
   color: white;
-  background-color: #4a90e2;
+  background-color: #0077d7;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -112,12 +171,12 @@ tr:nth-child(even) {
 }
 
 #searchBtn :hover:not(:disabled) {
-  background-color:#4a90e2;
+  background-color:#0077d7;
   transform: translateY(-3px);
 }
 
 .bool.true {
-  color: #4a90e2;
+  color: #0077d7;
 }
 
 .bool.false {
@@ -131,7 +190,7 @@ tr:nth-child(even) {
   padding: 10px 20px;
   border: none;
   color: white;
-  background-color: #4a90e2;
+  background-color: #0077d7;
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;

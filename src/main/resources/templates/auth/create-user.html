@@ -32,7 +32,7 @@
         <main class="main">
             <div class="container">
                 <h2>ユーザー作成</h2>
-                <form th:action="@{/auth/create-user}" th:object="${userForm}" method="post">
+                <form class="input" th:action="@{/auth/create-user}" th:object="${userForm}" method="post">
                     <div th:if="${error}" >
                         <p  class="error" th:text="${error}"></p>
                     </div>

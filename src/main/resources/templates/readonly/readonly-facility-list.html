@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width">
         <script th:src="@{/js/readonly-facility-list.js}"></script>
         <link rel="stylesheet" th:href="@{/css/common.css}">
-        <link rel="stylesheet" th:href="@{/css/readonly-facility-list.css}">
+        <link rel="stylesheet" th:href="@{/css/facility-list.css}">
     </head>
     <body>
         <!-- header ここから -->
@@ -29,67 +29,66 @@
 
         <!-- main ここから -->
         <main class="main">
-            <div class="heading">
-                <h1>設備管理システム</h1>
-            </div>
                 <!-- 検索フォーム -->
-                <form th:action="@{/readonly/readonlySearch}" th:object="${facilityForm}" method="post">
-                    <table class="facility-search-table">
-                        <div class="filters">
-                            管理番号:
-                            <select name="id">
-                                <option value="">未選択</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <!-- 他のIDを追加 -->
-                            </select>
-                            品名:
-                            <select name="product" th:field="*{product}" th:errorclass="error-input">
-                                <option value="">未選択</option>
-                                <option value="ノートPC">ノートPC</option>
-                                <option value="キーボード">キーボード</option>
-                                <option value="マウス">マウス</option>
-                                <option value="モニター">モニター</option>
-                                <option value="レーザープリンター">レーザープリンター</option>
-                                <option value="インクジェッタ">インクジェッタ</option>
-                                <option value="ラックマウントサーバー">ラックマウントサーバー</option>
-                                <option value="ルータ">ルータ</option>
-                                <option value="ハブ">ハブ</option>
-                                <option value="テプラー">テプラー</option>
-                                <option value="テレビ">テレビ</option>
-                                <option value="スピーカー">スピーカー</option>
-                                <option value="電話機">電話機</option>    
-                                <!-- 他の品名を追加 -->
-                            </select>
-                            メーカー:
-                            <select name="manufacturer">
-                                <option value="">未選択</option>
-                                <option value="Panasonic">Panasonic</option>
-                                <option value="Sharp">Sharp</option>
-                                <option value="Sony">Sony</option>
-                            </select>
-                            耐用年数:
-                            <select name="serviceLife">
-                                <option value="">未選択</option>
-                                <option value="3">3年</option>
-                                <option value="5">5年</option>
-                                <option value="10">10年</option>
-                            </select>
-                            設置場所:
-                            <select name="location">
-                                <option value="">未選択</option>
-                                <option value="東京本店">東京本店</option>
-                                <option value="仙台支店">仙台支店</option>
-                                <option value="新潟支店">新潟支店</option>
-                                <option value="横浜支店">横浜支店</option>
-                                <option value="埼玉支店">埼玉支店</option>
-                                <option value="大阪支店">大阪支店</option>
-                            </select>
-                            <input type="submit" value="この条件で検索" class="search-button" />
-                        </div>
-                    </table>
-                </form>
-            </div>
+                <button type="button" id="toggleSearchBtn" class="search-toggle-btn">設備検索</button>
+                <div id="searchBox" class="search-box" style="display:none;">
+                    <form th:action="@{/readonly/readonlySearch}" th:object="${facilityForm}" method="post">
+                        <table class="facility-search-table">
+                            <div class="filters">
+                                管理番号:
+                                <select class="pulldown-menu" name="id">
+                                    <option value="">未選択</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <!-- 他のIDを追加 -->
+                                </select>
+                                品名:
+                                <select class="pulldown-menu" name="product" th:field="*{product}" th:errorclass="error-input">
+                                    <option value="">未選択</option>
+                                    <option value="ノートPC">ノートPC</option>
+                                    <option value="キーボード">キーボード</option>
+                                    <option value="マウス">マウス</option>
+                                    <option value="モニター">モニター</option>
+                                    <option value="レーザープリンター">レーザープリンター</option>
+                                    <option value="インクジェッタ">インクジェッタ</option>
+                                    <option value="ラックマウントサーバー">ラックマウントサーバー</option>
+                                    <option value="ルータ">ルータ</option>
+                                    <option value="ハブ">ハブ</option>
+                                    <option value="テプラー">テプラー</option>
+                                    <option value="テレビ">テレビ</option>
+                                    <option value="スピーカー">スピーカー</option>
+                                    <option value="電話機">電話機</option>    
+                                    <!-- 他の品名を追加 -->
+                                </select>
+                                メーカー:
+                                <select class="pulldown-menu" name="manufacturer">
+                                    <option value="">未選択</option>
+                                    <option value="Panasonic">Panasonic</option>
+                                    <option value="Sharp">Sharp</option>
+                                    <option value="Sony">Sony</option>
+                                </select>
+                                耐用年数:
+                                <select class="pulldown-menu" name="serviceLife">
+                                    <option value="">未選択</option>
+                                    <option value="3">3年</option>
+                                    <option value="5">5年</option>
+                                    <option value="10">10年</option>
+                                </select>
+                                設置場所:
+                                <select class="pulldown-menu" name="location">
+                                    <option value="">未選択</option>
+                                    <option value="東京本店">東京本店</option>
+                                    <option value="仙台支店">仙台支店</option>
+                                    <option value="新潟支店">新潟支店</option>
+                                    <option value="横浜支店">横浜支店</option>
+                                    <option value="埼玉支店">埼玉支店</option>
+                                    <option value="大阪支店">大阪支店</option>
+                                </select>
+                                <input type="submit" value="この条件で検索" class="search-btn" />
+                            </div>
+                        </table>
+                    </form>
+                </div>
 
             <!-- 一覧表示 -->
             <div class="table-wrapper">

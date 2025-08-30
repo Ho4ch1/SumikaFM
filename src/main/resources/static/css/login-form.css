@@ -33,7 +33,7 @@ body {
   }
 
 input:focus {
-  outline: 2px solid #3ba1f4; /* 好きな色に */
+  outline: 2px solid #0077d7; /* 好きな色に */
   box-shadow: 0 0 0 2px rgba(79, 79, 79, 0.3); /* 任意で影も */
 }
 
@@ -93,7 +93,7 @@ button {
     margin-top:10px;
     width: 100%;
     padding: 10px;
-    background: #3ba1f4;
+    background: #0077d7;
     border: none;
     border-radius: 5px;
     color: #ffffff;
