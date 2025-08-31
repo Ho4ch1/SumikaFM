@@ -33,24 +33,24 @@
                 <h1>設備編集画面</h1>
                 <form class="register-form" th:action="@{/admin/edit}" th:object="${facilityForm}" method="post">
                   <input type="hidden" th:field="*{id}">
-                  <label>品名：<input type="text" name="product" required></label>
-                  <label>型番：<input type="text" name="modelNumber" required></label>
-                  <label>メーカー：<input type="text" name="manufacturer"></label>
-                  <label>仕様：<input type="text" name="specification"></label>
+                  <label>品名：<input type="text" name="product" th:field="*{product}" required></label>
+                  <label>型番：<input type="text" name="modelNumber" th:field="*{modelNumber}" required></label>
+                  <label>メーカー：<input type="text" name="manufacturer" th:field="*{manufacturer}"></label>
+                  <label>仕様：<input type="text" name="specification" th:field="*{specification}"></label>
             
                   <label>耐用年数：
-                    <select name="serviceLife">
+                    <select name="serviceLife" th:field="*{serviceLife}">
                       <option value="0">0年</option>
                       <option value="4">4年</option>
                       <option value="6">6年</option>
                     </select>
                   </label>
             
-                  <label>購入日：<input type="date" name="purchaseDate"></label>
+                  <label>購入日：<input type="date" name="purchaseDate" th:field="*{purchaseDate}"></label>
                   
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>貸出可否： <!-- 変更 -->
-                    <select name="depreciation"> <!-- 変更 -->
+                    <select name="depreciation" th:field="*{depreciation}"> <!-- 変更 -->
                       <option value="true">貸出可能</option>
                       <option value="false">貸出不可</option>
                     </select>
@@ -58,7 +58,7 @@
 
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>使用可否： <!-- 変更 -->
-                    <select name="notAvailable"> <!-- 変更 -->
+                    <select name="notAvailable" th:field="*{notAvailable}"> <!-- 変更 -->
                       <option value="true">使用可</option>
                       <option value="false">使用不可</option>
                     </select>
@@ -66,14 +66,14 @@
             
                   <!-- ▼変更：チェックボックス → セレクトボックス -->
                   <label>貸出可否： <!-- 変更 -->
-                    <select name="rentAble"> <!-- 変更 -->
+                    <select name="rentAble" th:field="*{rentAble}"> <!-- 変更 -->
                       <option value="true">貸出可能</option>
                       <option value="false">貸出不可</option>
                     </select>
                   </label>
             
                   <label>設置場所：
-                    <select name="location">
+                    <select name="location" th:field="*{location}">
                       <option value="東京本店">東京本店</option>
                       <option value="会計課">会計課</option>
                       <option value="設備管理課">設備管理課</option>
@@ -85,7 +85,7 @@
                     </select>
                   </label>
             
-                  <label>使用期限：<input type="date" name="expiry"></label>
+                  <label>使用期限：<input type="date" name="expiry" th:field="*{expiry}"></label>
             
                   <div class="form-buttons">
                     <button type="submit">保存</button>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.te4a.app2.facility2.bean.FacilityBean;
 import jp.te4a.app2.facility2.form.FacilityForm;
@@ -87,12 +88,13 @@ public class AdminController {
 
     // 登録処理
     @PostMapping(path="create")
-    public String create(@Validated FacilityForm facilityForm, BindingResult result , Model model) {
+    public String create(@Validated FacilityForm facilityForm, BindingResult result , Model model, RedirectAttributes redirectAttributes) {
         if(result.hasErrors()) {
             //エラー発生時に登録画面に戻す
             return "admin/register";
         }
         facilityService.save(facilityForm);
+        //redirectAttributes.addFlashAttribute("success", "設備を登録しました");
         return "redirect:list";
     }
 
@@ -107,20 +109,22 @@ public class AdminController {
 
     // 編集処理
     @PostMapping(path = "edit")
-    public String edit(@Validated FacilityForm facilityForm, Model model, BindingResult result) {
+    public String edit(@Validated FacilityForm facilityForm, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             model.addAttribute("facilityForm", facilityForm); // ← これを忘れずに！
             return "admin/edit";
         }
         facilityService.update(facilityForm);
+        //redirectAttributes.addFlashAttribute("success", "設備を更新しました");
         return "redirect:list";
     }
 
     // 削除処理
     @PostMapping(path = "delete")
-    public String delete(@RequestParam("selectedIds") List<Integer> selectedIds) {
+    public String delete(@RequestParam("selectedIds") List<Integer> selectedIds, RedirectAttributes redirectAttributes) {
         Integer id = selectedIds.get(0);
         facilityService.delete(id);
+        //redirectAttributes.addFlashAttribute("success", "設備を削除しました");
         return "redirect:list";
     }
 
