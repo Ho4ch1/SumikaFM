@@ -5,6 +5,7 @@
         <title>権限選択ページ</title>
         <meta name="viewport" content="width=device-width">
         <script src="/js/admin-Facility-list.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/common.css}">
         <link rel="stylesheet" th:href="@{/css/facility-list.css}">
     </head>
@@ -17,7 +18,13 @@
                 </a>
                 <div class="user-area">
                     <p class="login-user">
-                      <span sec:authentication="principal.username">duke</span>
+                        <span sec:authorize="hasRole('ADMIN')">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </span>
+                        <span sec:authorize="hasRole('USER')">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <span sec:authentication="principal.username">duke</span>
                     </p>
                     <form th:action="@{/logout}" method="post">
                         <input class="logoutBtn" type="submit" value="ログアウト" />
@@ -119,9 +126,18 @@
                                 <td th:text="${facility.specification}">仕様</td>
                                 <td th:text="${facility.serviceLife}">耐用年数</td>
                                 <td th:text="${facility.purchaseDate}">購入日</td>
-                                <td th:text="${facility.depreciation}">減価償却</td>
-                                <td th:text="${facility.notAvailable}">利用可能</td>
-                                <td th:text="${facility.rentAble}">貸出可能</td>
+                                <td>
+                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.depreciation}"></i>
+                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.depreciation}"></i>
+                                </td>
+                                <td>
+                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.notAvailable}"></i>
+                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.notAvailable}"></i>
+                                </td>
+                                <td>
+                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.rentAble}"></i>
+                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.rentAble}"></i>
+                                </td>
                                 <td th:text="${facility.location}">設置場所</td>
                                 <td th:text="${facility.expiry}">使用期限</td>
                             </tr>

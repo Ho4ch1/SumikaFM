@@ -64,6 +64,9 @@ body {
   
   button,
   .cancel-button {
+    display: inline-flex;        /* フレックスにする */
+    align-items: center;         /* 縦位置を中央に揃える */
+    justify-content: center;     /* 横も中央寄せ */
     background-color: #0077d7;
     border: none;
     color: #ffffff;
