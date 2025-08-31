@@ -47,6 +47,12 @@ public class AdminController {
         @RequestParam(required = false) String location,
         Model model) {
 
+        // ★プルダウン用のデータを毎回セットする
+        model.addAttribute("ids", facilityService.getAllIds());
+        model.addAttribute("manufacturers", facilityService.getAllManufacturers());
+        model.addAttribute("products", facilityService.getAllProducts());
+        model.addAttribute("locations", facilityService.getAllLocations());
+        model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
         List<FacilityBean> result = facilityService.search(id, product, manufacturer, serviceLife, location);
 
         List<FacilityForm> forms = new ArrayList<>();
@@ -65,6 +71,11 @@ public class AdminController {
     @GetMapping("/list")
     String list(Model model) {
         model.addAttribute("facilities", facilityService.findAll());
+        model.addAttribute("ids", facilityService.getAllIds());
+        model.addAttribute("manufacturers", facilityService.getAllManufacturers());
+        model.addAttribute("products", facilityService.getAllProducts());
+        model.addAttribute("locations", facilityService.getAllLocations());
+        model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
         return "admin/admin-facility-list";
     }
 

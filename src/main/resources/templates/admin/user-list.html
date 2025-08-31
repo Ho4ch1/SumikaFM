@@ -12,7 +12,7 @@
         <!-- header ここから -->
         <header class="header">
             <div class="header-inner">
-                <a class="header-logo" th:href="@{/admin}">
+                <a class="header-logo" th:href="">
                     <img th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
@@ -29,9 +29,29 @@
 
         <!-- main ここから -->
         <main class="main">
-
-
-            
+            <!-- 一覧表示 -->
+            <div class="table-wrapper">
+                <form method="post" id="tableForm">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">チェック</th>
+                                <th>ID</th>
+                                <th>ユーザー名</th>
+                                <th>権限</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user : ${users}">
+                                <td><input type="checkbox" name="selectedIds" th:value="${user.id}" /></td>
+                                <td th:text="${user.id}">0</td>
+                                <td th:text="${user.username}">ユーザー名</td>
+                                <td th:text="${user.role}">権限</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
         </main>
         <!-- main ここまで -->
 

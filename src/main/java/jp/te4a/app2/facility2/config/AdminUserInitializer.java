@@ -14,7 +14,7 @@ public class AdminUserInitializer {
     @Bean
     public CommandLineRunner initAdminUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            userRepository.findByUsername("admin").ifPresentOrElse(
+            userRepository.findByUsername("a").ifPresentOrElse(
                 user -> {
                 },
                 () -> {

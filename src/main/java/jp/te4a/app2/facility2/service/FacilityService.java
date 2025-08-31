@@ -95,4 +95,24 @@ public class FacilityService {
             .toList();
     }
 
+    public List<Integer> getAllIds() {
+        return facilityRepository.findAllIds();
+    }
+
+    public List<String> getAllProducts() {
+        return facilityRepository.findAllProducts();
+    }
+
+    public List<String> getAllManufacturers() {
+        return facilityRepository.findAllManufacturers();
+    }
+
+    public List<String> getAllLocations() {
+        return facilityRepository.findAllLocations();
+    }
+
+    public List<Integer> getAllServiceLifes() {
+        return facilityRepository.findAllServiceLifes();
+    }
+
 }

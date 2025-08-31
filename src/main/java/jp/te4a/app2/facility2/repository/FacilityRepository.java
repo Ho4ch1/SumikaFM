@@ -20,9 +20,25 @@ import jp.te4a.app2.facility2.bean.FacilityBean;
 @Repository
 public interface FacilityRepository extends JpaRepository<FacilityBean,Integer> {
 
+    @Query("SELECT DISTINCT f.id FROM FacilityBean f")
+    List<Integer> findAllIds();
+    
+    @Query("SELECT DISTINCT f.manufacturer FROM FacilityBean f")
+    List<String> findAllManufacturers();
+
+    @Query("SELECT DISTINCT f.product FROM FacilityBean f")
+    List<String> findAllProducts();
+
+    @Query("SELECT DISTINCT f.location FROM FacilityBean f")
+    List<String> findAllLocations();
+
+    @Query("SELECT DISTINCT f.serviceLife FROM FacilityBean f")
+    List<Integer> findAllServiceLifes();
+
     @Query("SELECT X FROM FacilityBean X ORDER BY X.product")
     List<FacilityBean> findAllOrderByTitle();
 }
+
 /*public class FacilityRepository {
 
     private final ConcurrentMap<Integer,FacilityBean> facilityMap = new ConcurrentHashMap<>();
