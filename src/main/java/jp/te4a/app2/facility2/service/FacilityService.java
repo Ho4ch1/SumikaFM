@@ -1,5 +1,7 @@
 package jp.te4a.app2.facility2.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,10 +67,11 @@ public class FacilityService {
     //全件取得処理
     public List<FacilityForm> findAll() {
         List<FacilityBean> beanList = facilityRepository.findAll();
-        List<FacilityForm> formList = new ArrayList<FacilityForm>();
-        for(FacilityBean facilityBean: beanList) {
+        List<FacilityForm> formList = new ArrayList<>();
+        for (FacilityBean facilityBean : beanList) {
             FacilityForm facilityForm = new FacilityForm();
             BeanUtils.copyProperties(facilityBean, facilityForm);
+            facilityForm.setDepreciation(isDepreciated(facilityBean));
             formList.add(facilityForm);
         }
         return formList;
@@ -77,9 +80,10 @@ public class FacilityService {
     //１件取得処理
     public FacilityForm findOne(Integer id) {
         Optional<FacilityBean> opt = facilityRepository.findById(id);
-        FacilityBean facility = opt.get();
+        FacilityBean facility = opt.orElseThrow();
         FacilityForm facilityForm = new FacilityForm();
         BeanUtils.copyProperties(facility, facilityForm);
+        facilityForm.setDepreciation(isDepreciated(facility));
         return facilityForm;
     }
 
@@ -114,5 +118,17 @@ public class FacilityService {
     public List<Integer> getAllServiceLifes() {
         return facilityRepository.findAllServiceLifes();
     }
+
+    public boolean isDepreciated(FacilityBean facility) {
+    if (facility.getPurchaseDate() == null || facility.getServiceLife() == null) {
+        return false;
+    }
+
+    LocalDate purchase = LocalDate.parse(facility.getPurchaseDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+    LocalDate expiry = purchase.plusYears(facility.getServiceLife());
+
+    return LocalDate.now().isAfter(expiry);
+}
 
 }

@@ -66,7 +66,12 @@
                         </select>
                     </div>
                     
-                    <button class="btn btn-cr btn-primary btn-block" type="submit">ユーザー作成</button>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">ユーザー作成</button>
+                        <a th:href="@{/admin}" class="btn btn-secondary">戻る</a>
+                    </div>
+                    
+                    
                 </form>
             </div>
         </main>
