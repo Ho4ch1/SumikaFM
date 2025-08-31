@@ -5,6 +5,7 @@
         <title>権限選択ページ</title>
         <meta name="viewport" content="width=device-width">
         <script src=""></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/common.css}">
         <link rel="stylesheet" th:href="@{/css/register.css}">
     </head>
@@ -17,8 +18,14 @@
                 </a>
                 <div class="user-area">
                   <p class="login-user">
+                    <span sec:authorize="hasRole('ADMIN')">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </span>
+                    <span sec:authorize="hasRole('USER')">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
                     <span sec:authentication="principal.username">duke</span>
-                  </p>
+                </p>
                   <form th:action="@{/logout}" method="post">
                       <input class="logoutBtn" type="submit" value="ログアウト" />
                   </form>
@@ -38,16 +45,12 @@
                   <label>仕様：<input type="text" name="specification"></label>
             
                   <label>耐用年数：
-                    <select name="serviceLife">
-                      <option value="0">0年</option>
-                      <option value="4">4年</option>
-                      <option value="6">6年</option>
-                    </select>
+                    <input type="number" name="serviceLife" required>
                   </label>
             
                   <label>購入日：<input type="date" name="purchaseDate"></label>
             
-                  <label>減価償却k： <!-- 変更 -->
+                  <label>減価償却k: <!-- 変更 -->
                     <select name="depreciation"> <!-- 変更 -->
                       <option value="true">未償却</option>
                       <option value="false">償却済み</option>
