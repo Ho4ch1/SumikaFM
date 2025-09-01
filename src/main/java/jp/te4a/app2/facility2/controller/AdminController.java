@@ -39,6 +39,7 @@ public class AdminController {
         return new FacilityForm();
     }
     //管理者ログイン時の検索
+    /*
     @PostMapping("/adminSearch")
     public String adminSearch(
         @RequestParam(required = false) Integer id,
@@ -56,6 +57,14 @@ public class AdminController {
         model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
         List<FacilityBean> result = facilityService.search(id, product, manufacturer, serviceLife, location);
 
+        for (FacilityBean bean : result) {
+            FacilityForm form = new FacilityForm();
+            BeanUtils.copyProperties(bean, form);
+            form.setDepreciation(facilityService.isDepreciated(bean)); // ★ここで自動判定
+            forms.add(form);
+        }
+
+        
         List<FacilityForm> forms = new ArrayList<>();
         for (FacilityBean bean : result) {
             FacilityForm form = new FacilityForm();
@@ -77,8 +86,70 @@ public class AdminController {
         model.addAttribute("products", facilityService.getAllProducts());
         model.addAttribute("locations", facilityService.getAllLocations());
         model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
+        for (FacilityBean bean : result) {
+            FacilityForm form = new FacilityForm();
+            BeanUtils.copyProperties(bean, form);
+            form.setDepreciation(facilityService.isDepreciated(bean)); // ★ここで自動判定
+            forms.add(form);
+        }
+        
         return "admin/admin-facility-list";
     }
+        */
+
+    // 管理者ログイン時の検索
+@PostMapping("/adminSearch")
+public String adminSearch(
+    @RequestParam(required = false) Integer id,
+    @RequestParam(required = false) String product,
+    @RequestParam(required = false) String manufacturer,
+    @RequestParam(required = false) Integer serviceLife,
+    @RequestParam(required = false) String location,
+    Model model) {
+
+    // ★プルダウン用のデータを毎回セットする
+    model.addAttribute("ids", facilityService.getAllIds());
+    model.addAttribute("manufacturers", facilityService.getAllManufacturers());
+    model.addAttribute("products", facilityService.getAllProducts());
+    model.addAttribute("locations", facilityService.getAllLocations());
+    model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
+
+    List<FacilityBean> result = facilityService.search(id, product, manufacturer, serviceLife, location);
+
+    List<FacilityForm> forms = new ArrayList<>();
+    for (FacilityBean bean : result) {
+        FacilityForm form = new FacilityForm();
+        BeanUtils.copyProperties(bean, form);
+        form.setDepreciation(facilityService.isDepreciated(bean));
+        forms.add(form);
+    }
+
+    model.addAttribute("facilities", forms);
+    return "admin/admin-facility-list";
+}
+
+// 一覧表示
+@GetMapping("/list")
+String list(Model model) {
+    List<FacilityForm> forms = facilityService.findAll();
+
+for (FacilityForm form : forms) {
+    FacilityBean bean = new FacilityBean();
+    BeanUtils.copyProperties(form, bean);
+    form.setDepreciation(facilityService.isDepreciated(bean));
+}
+
+model.addAttribute("facilities", forms);
+
+    model.addAttribute("ids", facilityService.getAllIds());
+    model.addAttribute("manufacturers", facilityService.getAllManufacturers());
+    model.addAttribute("products", facilityService.getAllProducts());
+    model.addAttribute("locations", facilityService.getAllLocations());
+    model.addAttribute("serviceLifes", facilityService.getAllServiceLifes());
+
+    return "admin/admin-facility-list";
+}
+
 
     // 登録画面表示
     @PostMapping(path="register")

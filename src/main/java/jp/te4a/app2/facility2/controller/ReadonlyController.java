@@ -52,6 +52,7 @@ public class ReadonlyController {
         for (FacilityBean bean : result) {
             FacilityForm form = new FacilityForm();
             BeanUtils.copyProperties(bean, form);
+            form.setDepreciation(facilityService.isDepreciated(bean));
             forms.add(form);
         }
 
