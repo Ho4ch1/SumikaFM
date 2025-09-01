@@ -120,15 +120,19 @@ public class FacilityService {
     }
 
     public boolean isDepreciated(FacilityBean facility) {
-    if (facility.getPurchaseDate() == null || facility.getServiceLife() == null) {
-        return false;
+        if (facility.getPurchaseDate() == null || facility.getServiceLife() == null) {
+            return true;
+        }
+    
+        LocalDate purchase = LocalDate.parse(
+            facility.getPurchaseDate(),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        );
+        LocalDate expiry = purchase.plusYears(facility.getServiceLife());
+    
+        return !LocalDate.now().isAfter(expiry);
     }
-
-    LocalDate purchase = LocalDate.parse(facility.getPurchaseDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-    LocalDate expiry = purchase.plusYears(facility.getServiceLife());
-
-    return LocalDate.now().isAfter(expiry);
-}
+    
+    
 
 }

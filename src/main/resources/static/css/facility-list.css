@@ -231,3 +231,6 @@ tr:nth-child(even) {
   margin: auto;
   padding-top: 50px; /* ログアウトエリアの高さ + 余裕 */
 }
+.depreciated-row {
+  background-color: #f5bdbd !important;
+}
