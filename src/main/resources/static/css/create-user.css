@@ -228,3 +228,20 @@ select:focus {
     transform: translateY(-3px);
     opacity: 0.9;
 }
+
+.facilityListBtn {
+    height: 25px;
+    width: 100px;
+    color: white;
+    background-color: #e98fe1; /* 緑色（区別しやすいように） */
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  
+  .facilityListBtn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+  }
+  

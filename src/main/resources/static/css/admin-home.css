@@ -2,15 +2,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+     /* 修正ポイント */
+     min-height: 100vh;   /* height → min-height に変更 */
+     display: flex;       /* フレックスレイアウト化 */
+     flex-direction: column;
 }
 
 .main {
     padding: 150px;
     padding-left: 20%;
     padding-right: 20%;
+}
+main.main {
+    flex: 1; /* コンテンツが少なくてもfooterを押し下げる */
 }
 
 .container {
