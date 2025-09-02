@@ -234,3 +234,37 @@ tr:nth-child(even) {
 .depreciated-row {
   background-color: #f5bdbd !important;
 }
+/* body全体を縦方向flexにしてfooterを下部固定 */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main.main {
+  flex: 1; /* コンテンツ部分を可変にしてfooterを押し下げる */
+}
+
+footer.footer {
+  margin-top: auto; /* コンテンツが少なくても最下部に配置 */
+}
+
+.userCreateBtn {
+  height: 25px;
+  width: 100px;
+  color: white;
+  background-color: #28a745; /* 緑色（区別しやすいように） */
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.userCreateBtn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
