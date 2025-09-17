@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>設備一覧ページ</title>
         <meta name="viewport" content="width=device-width">
-        <script src="@{/js/admin-facility-list.js}"></script>
+        <script src="@{/js/admin-Facility-list.js}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/common.css}">
         <link rel="stylesheet" th:href="@{/css/facility-list.css}">
@@ -40,95 +40,41 @@
 
         <!-- main ここから -->
         <main class="main">
-                <!-- 検索フォーム -->
-                <button type="button" id="toggleSearchBtn" class="search-toggle-btn">設備検索</button>
-                <div id="searchBox" class="search-box" style="display:none;">
-                    <form th:action="@{/readonly/readonlySearch}" th:object="${facilityForm}" method="post">
-                        <table class="facility-search-table">
-                            <div class="filters">
-                                管理番号:
-                                <select class="pulldown-menu" name="id">
-                                    <option value="">未選択</option>
-                                    <option th:each="i : ${ids}" th:value="${i}" th:text="${i}"></option>
-                                </select>
-                                品名:
-                                <select class="pulldown-menu" name="product" th:field="*{product}" th:errorclass="error-input">
-                                    <option value="">未選択</option>
-                                    <option th:each="p : ${products}" th:value="${p}" th:text="${p}"></option>
-                                </select>
-                                メーカー:
-                                <select class="pulldown-menu" name="manufacturer">
-                                    <option value="">未選択</option>
-                                    <option th:each="m : ${manufacturers}" th:value="${m}" th:text="${m}"></option>
-                                </select>
-                                耐用年数:
-                                <select class="pulldown-menu" name="serviceLife">
-                                    <option value="">未選択</option>
-                                    <option th:each="s : ${serviceLifes}" th:value="${s}" th:text="${s}"></option>
-                                </select>
-                                設置場所:
-                                <select class="pulldown-menu" name="location">
-                                    <option value="">未選択</option>
-                                    <option th:each="l : ${locations}" th:value="${l}" th:text="${l}"></option>
-                                </select>
-                                <input type="submit" value="この条件で検索" class="search-btn" />
-                            </div>
-                        </table>
-                    </form>
-                </div>
-
-            <!-- 一覧表示 -->
-            <div class="table-wrapper">
-                <form method="post" id="tableForm">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="checkbox-cell">チェック</th>
-                                <th>管理番号</th>
-                                <th>品名</th>
-                                <th>型番</th>
-                                <th>メーカー</th>
-                                <th>仕様</th>
-                                <th>耐用年数</th>
-                                <th>購入日</th>
-                                <th>購入金額</th>
-                                <th>減価償却</th>
-                                <th>利用可能</th>
-                                <th>貸出可能</th>
-                                <th>設置場所</th>
-                                <th>使用期限</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="facility : ${facilities}"
-                            th:classappend="${!facility.depreciation} ? 'depreciated-row'">
-                                <td><input type="checkbox" name="selectedIds" th:value="${facility.id}" /></td>
-                                <td th:text="${facility.id}">0</td>
-                                <td th:text="${facility.product}">品名</td>
-                                <td th:text="${facility.modelNumber}">型番</td>
-                                <td th:text="${facility.manufacturer}">メーカー</td>
-                                <td th:text="${facility.specification}">仕様</td>
-                                <td th:text="${facility.serviceLife}">耐用年数</td>
-                                <td th:text="${facility.purchaseDate}">購入日</td>
-                                <td th:text="${facility.money}">購入金額</td>
-                                <td>
-                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.depreciation}"></i>
-                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.depreciation}"></i>
-                                </td>
-                                <td>
-                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.notAvailable}"></i>
-                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.notAvailable}"></i>
-                                </td>
-                                <td>
-                                    <i class="fa-regular fa-circle icon-true" th:if="${facility.rentAble}"></i>
-                                    <i class="fa-solid fa-xmark icon-false" th:if="${!facility.rentAble}"></i>
-                                </td>
-                                <td th:text="${facility.location}">設置場所</td>
-                                <td th:text="${facility.expiry}">使用期限</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
+            <button type="button" id="toggleSearchBtn" class="search-toggle-btn">設備検索</button>
+            <!-- 検索フォーム -->
+            <div id="searchBox" class="search-box" style="display:none;">
+               <form th:action="@{/admin/adminSearch}" th:object="${facilityForm}" method="post">
+                <table class="facility-search-table">
+                    <div class="filters">
+                        管理番号:
+                        <select class="pulldown-menu" name="id">
+                            <option value="">未選択</option>
+                            <option th:each="i : ${ids}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                        品名:
+                        <select class="pulldown-menu" name="product" th:field="*{product}" th:errorclass="error-input">
+                            <option value="">未選択</option>
+                            <option th:each="p : ${products}" th:value="${p}" th:text="${p}"></option>
+                        </select>
+                        メーカー:
+                        <select class="pulldown-menu" name="manufacturer">
+                            <option value="">未選択</option>
+                            <option th:each="m : ${manufacturers}" th:value="${m}" th:text="${m}"></option>
+                        </select>
+                        耐用年数:
+                        <select class="pulldown-menu" name="serviceLife">
+                            <option value="">未選択</option>
+                            <option th:each="s : ${serviceLifes}" th:value="${s}" th:text="${s}"></option>
+                        </select>
+                        設置場所:
+                        <select class="pulldown-menu" name="location">
+                            <option value="">未選択</option>
+                            <option th:each="l : ${locations}" th:value="${l}" th:text="${l}"></option>
+                        </select>
+                        <input type="submit" value="この条件で検索" class="search-btn" />
+                    </div>
+                </table>
+            </form>
             </div>
             <div class="action-buttons">
                 <!-- 登録フォーム：チェックボックスとは無関係 -->
