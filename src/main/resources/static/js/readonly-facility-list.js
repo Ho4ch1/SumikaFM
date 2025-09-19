@@ -11,4 +11,19 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleBtn.textContent = "設備検索";
         }
     });
+
+    //チェックボックス
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="selectedIds"]');
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", () => {
+            if (cb.checked) {
+                checkboxes.forEach(other => {
+                    if (other !== cb) {
+                        other.checked = false;
+                    }
+                });
+            }
+        });
+    });
 });
