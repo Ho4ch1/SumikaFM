@@ -33,7 +33,7 @@ public class UserController {
         return new UserForm();
     }
     
-    @PostMapping("/adminSearch")
+    @PostMapping("/userSearch")
     public String adminSearch(
         @RequestParam(required = false) Integer id,
         @RequestParam(required = false) String username,
@@ -42,8 +42,8 @@ public class UserController {
 
         // ★プルダウン用のデータを毎回セットする
         model.addAttribute("ids", userService.getAllIds());
-        model.addAttribute("username", userService.getAllUsernames());
-        model.addAttribute("role", userService.getAllRoles());
+        model.addAttribute("usernames", userService.getAllUsernames());
+        model.addAttribute("roles", userService.getAllRoles());
 
         List<UserBean> result = userService.search(id, username, role);
 
@@ -71,8 +71,8 @@ public class UserController {
     model.addAttribute("users", forms);
 
         model.addAttribute("ids", userService.getAllIds());
-        model.addAttribute("user", userService.getAllUsernames());
-        model.addAttribute("role", userService.getAllRoles());
+        model.addAttribute("usernames", userService.getAllUsernames());
+        model.addAttribute("roles", userService.getAllRoles());
 
         return "auth/user-list";
     }
@@ -80,28 +80,25 @@ public class UserController {
     // 登録画面表示
     @PostMapping(path="register")
     public String registerForm() {
-        return "admin/register";
+        return "auth/create-user";
     }
 
     // 登録処理
     @PostMapping(path="create")
-    public String create(@Validated UserForm userForm, BindingResult result , Model model, RedirectAttributes redirectAttributes) {
+    String create(@Validated UserForm form, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            //エラー発生時に登録画面に戻す
-            return "admin/register";
+            return list(model);
         }
-        userService.save(userForm);
-        //redirectAttributes.addFlashAttribute("success", "設備を登録しました");
-        return "redirect:list";
-    }
-
-    //選択した項目を編集画面に表示（1つ選択可能）
-    @PostMapping(path = "editSelected")
-    public String editSelected(@RequestParam List<Integer> selectedIds, Model model) {
-        Integer id = selectedIds.get(0);
-        UserForm userForm = userService.findOne(id);
-        model.addAttribute("userForm", userForm);
-        return "admin/edit";
+        try {
+            userService.create(form);
+            return "redirect:list";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "auth/create-user";
+        } catch (Exception e) {
+            model.addAttribute("error", "登録に失敗しました");
+            return "auth/create-user";
+        }
     }
 
     // 削除処理
