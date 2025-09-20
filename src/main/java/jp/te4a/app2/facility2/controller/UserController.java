@@ -1,5 +1,6 @@
 package jp.te4a.app2.facility2.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import jp.te4a.app2.facility2.bean.UserBean;
 import jp.te4a.app2.facility2.form.UserForm;
 import jp.te4a.app2.facility2.service.UserService;
@@ -30,28 +32,55 @@ public class UserController {
     UserForm setUpForm() {
         return new UserForm();
     }
-// 一覧表示
-@GetMapping("/list")
-String list(Model model) {
-    List<UserForm> forms = userService.findAll();
-}
-/*
-model.addAttribute("facilities", forms);
+    
+    @PostMapping("/adminSearch")
+    public String adminSearch(
+        @RequestParam(required = false) Integer id,
+        @RequestParam(required = false) String username,
+        @RequestParam(required = false) String role,
+        Model model) {
 
-    model.addAttribute("ids", userService.getAllIds());
-    model.addAttribute("manufacturers", userService.getAllManufacturers());
-    model.addAttribute("products", userService.getAllProducts());
-    model.addAttribute("locations", userService.getAllLocations());
-    model.addAttribute("serviceLifes", userService.getAllServiceLifes());
+        // ★プルダウン用のデータを毎回セットする
+        model.addAttribute("ids", userService.getAllIds());
+        model.addAttribute("username", userService.getAllUsernames());
+        model.addAttribute("role", userService.getAllRoles());
 
-    return "auth/user-list";
-}
-*/
+        List<UserBean> result = userService.search(id, username, role);
+
+        List<UserForm> forms = new ArrayList<>();
+        for (UserBean bean : result) {
+            UserForm form = new UserForm();
+            BeanUtils.copyProperties(bean, form);
+            forms.add(form);
+        }
+
+        model.addAttribute("users", forms);
+        return "auth/user-list";
+    }
+
+    // 一覧表示
+    @GetMapping("/list")
+    String list(Model model) {
+        List<UserForm> forms = userService.findAll();
+
+    for (UserForm form : forms) {
+        UserBean bean = new UserBean();
+        BeanUtils.copyProperties(form, bean);
+    }
+
+    model.addAttribute("users", forms);
+
+        model.addAttribute("ids", userService.getAllIds());
+        model.addAttribute("user", userService.getAllUsernames());
+        model.addAttribute("role", userService.getAllRoles());
+
+        return "auth/user-list";
+    }
 
     // 登録画面表示
     @PostMapping(path="register")
     public String registerForm() {
-        return "auth/create-user";
+        return "admin/register";
     }
 
     // 登録処理
@@ -64,6 +93,15 @@ model.addAttribute("facilities", forms);
         userService.save(userForm);
         //redirectAttributes.addFlashAttribute("success", "設備を登録しました");
         return "redirect:list";
+    }
+
+    //選択した項目を編集画面に表示（1つ選択可能）
+    @PostMapping(path = "editSelected")
+    public String editSelected(@RequestParam List<Integer> selectedIds, Model model) {
+        Integer id = selectedIds.get(0);
+        UserForm userForm = userService.findOne(id);
+        model.addAttribute("userForm", userForm);
+        return "admin/edit";
     }
 
     // 削除処理

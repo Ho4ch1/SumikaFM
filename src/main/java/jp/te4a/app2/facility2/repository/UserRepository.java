@@ -3,7 +3,6 @@ package jp.te4a.app2.facility2.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import jp.te4a.app2.facility2.bean.FacilityBean;
 import jp.te4a.app2.facility2.bean.UserBean;
 
 import java.util.List;
@@ -16,7 +15,13 @@ public interface UserRepository extends JpaRepository<UserBean, Integer> {
     @Query("SELECT DISTINCT f.id FROM UserBean f")
     List<Integer> findAllIds();
 
-    @Query("SELECT X FROM FacilityBean X ORDER BY X.product")
-    List<FacilityBean> findAllOrderByTitle();
+    @Query("SELECT DISTINCT f.username FROM UserBean f")
+    List<String> findAllUsernames();
+
+    @Query("SELECT DISTINCT f.role FROM UserBean f")
+    List<String> findAllRoles();
+
+    @Query("SELECT X FROM UserBean X ORDER BY X.username")
+    List<UserBean> findAllOrderByTitle();
 }
 
