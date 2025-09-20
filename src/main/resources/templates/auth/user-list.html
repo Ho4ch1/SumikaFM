@@ -13,7 +13,7 @@
         <!-- header ここから -->
         <header class="header">
             <div class="header-inner">
-                <a class="header-logo" th:href="">
+                <a class="header-logo" th:href="@{/admin}">
                     <img th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
@@ -36,6 +36,22 @@
 
         <!-- main ここから -->
         <main class="main">
+            <div class="action-buttons">
+                <!-- 登録フォーム：チェックボックスとは無関係 -->
+                <form th:action="@{/auth/regester}" method="post">
+                    <div id="action-buttons-register">
+                        <button type="submit" id="registerBtn">登録</button>
+                    </div>
+                </form>
+
+                <!-- 削除フォーム：チェックされたIDをPOST -->
+                <form th:action="@{/auth/delete}" method="post">
+                    <div id="action-buttons-delete">
+                        <button type="submit" id="deleteBtn" disabled>削除</button>
+                    </div>
+                </form>
+            </div>
+
             <!-- 一覧表示 -->
             <div class="table-wrapper">
                 <form method="post" id="tableForm">
