@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>ユーザー一覧ページ</title>
         <meta name="viewport" content="width=device-width">
-        <script src=""></script>
+        <script th:src="@{/js/user-list.js}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" th:href="@{/css/common.css}">
         <link rel="stylesheet" th:href="@{/css/user-list.css}">
@@ -13,7 +13,7 @@
         <!-- header ここから -->
         <header class="header">
             <div class="header-inner">
-                <a class="header-logo" th:href="">
+                <a class="header-logo" th:href="@{/admin}">
                     <img th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
                 </a>
                 <div class="user-area">
@@ -26,6 +26,9 @@
                         </span>
                         <span sec:authentication="principal.username">duke</span>
                     </p>
+                    <form th:action="@{/admin}" method="get">
+                        <input class="userListBtn" type="submit" value="TOP" />
+                    </form>
                     <form th:action="@{/logout}" method="post">
                         <input class="logoutBtn" type="submit" value="ログアウト" />
                     </form>
@@ -36,6 +39,48 @@
 
         <!-- main ここから -->
         <main class="main">
+            <button type="button" id="toggleSearchBtn" class="search-toggle-btn">設備検索</button>
+            <!-- 検索フォーム -->
+            <div id="searchBox" class="search-box" style="display:none;">
+                <form th:action="@{/auth/userSearch}" th:object="${userForm}" method="post">
+                    <table class="facility-search-table">
+                        <div class="filters">
+                            管理番号:
+                            <select class="pulldown-menu" name="id">
+                                <option value="">未選択</option>
+                                <option th:each="i : ${ids}" th:value="${i}" th:text="${i}"></option>
+                            </select>
+                            ユーザーネーム:
+                            <select class="pulldown-menu" name="username">
+                                <option value="">未選択</option>
+                                <option th:each="u : ${usernames}" th:value="${u}" th:text="${u}"></option>
+                            </select>
+                            権限:
+                            <select class="pulldown-menu" name="role">
+                                <option value="">未選択</option>
+                                <option th:each="r : ${roles}" th:value="${r}" th:text="${r}"></option>
+                            </select>
+                            <input type="submit" value="この条件で検索" class="search-btn" />
+                        </div>
+                    </table>
+                </form>
+            </div>
+            <div class="action-buttons">
+                <!-- 登録フォーム：チェックボックスとは無関係 -->
+                <form th:action="@{/auth/register}" method="post">
+                    <div id="action-buttons-register">
+                        <button type="submit" id="registerBtn">登録</button>
+                    </div>
+                </form>
+
+                <!-- 削除フォーム：チェックされたIDをPOST -->
+                <form th:action="@{/auth/delete}" method="post">
+                    <div id="action-buttons-delete">
+                        <button type="submit" id="deleteBtn" disabled>削除</button>
+                    </div>
+                </form>
+            </div>
+
             <!-- 一覧表示 -->
             <div class="table-wrapper">
                 <form method="post" id="tableForm">

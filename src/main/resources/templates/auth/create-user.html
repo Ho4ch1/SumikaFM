@@ -26,10 +26,9 @@
                         </span>
                         <span sec:authentication="principal.username">duke</span>
                     </p>
-                    <form th:action="@{/admin/list}" method="get">
-                        <input class="facilityListBtn" type="submit" value="設備一覧" />
+                    <form th:action="@{/admin}" method="get">
+                        <input class="userListBtn" type="submit" value="TOP" />
                     </form>
-
                   <form th:action="@{/logout}" method="post">
                       <input class="logoutBtn" type="submit" value="ログアウト" />
                   </form>
@@ -42,7 +41,7 @@
         <main class="main">
             <div class="container">
                 <h2>ユーザー作成</h2>
-                <form class="input" th:action="@{/auth/create-user}" th:object="${userForm}" method="post">
+                <form class="input" th:action="@{/auth/create}" th:object="${userForm}" method="post">
                     <div th:if="${error}" >
                         <p  class="error" th:text="${error}"></p>
                     </div>
@@ -72,7 +71,7 @@
                     
                     <div class="button-group">
                         <button type="submit" class="btn btn-primary">ユーザー作成</button>
-                        <a th:href="@{/admin}" class="btn btn-secondary">戻る</a>
+                        <a th:href="@{/auth/list}" class="btn btn-secondary">戻る</a>
                     </div>
                     
                     

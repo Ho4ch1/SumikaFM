@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 @Data
 public class UserForm {
+    private Integer id; 
     @NotBlank
     private String username;
 

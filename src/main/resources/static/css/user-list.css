@@ -1,0 +1,286 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: auto; /* 横スクロール対応 */
+  }
+  /* 検索フォーム */
+  
+  .filters {
+    display: grid;
+    gap: 10px 20px; /* 行と列の間隔 */
+    align-items: center;
+  }
+  
+  .pulldown-menu {
+    border-radius: 5px;
+    width:100%;
+    box-sizing: border-box;
+  }
+  
+  .search-box {
+    max-width: 300px;
+    margin: 30px 30px 40px 30px;
+    padding: 20px;
+    color: white;
+    background-color: #4f4f4f;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  }
+    
+  .table-wrapper {
+    margin-top: 20px; /* フォームと重ならないように間隔を空ける */
+  }
+  
+    .search-box table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .search-box td {
+      padding: 10px;
+    }
+    
+    .search-box select {
+      padding: 5px;
+      font-size: 16px;
+    }
+    .search-toggle-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: #0077d7;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      margin: 20px 20px;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    
+    .search-toggle-btn:hover {
+      transform: translateY(-2px);
+      background-color: #0077d7;
+    }
+    /* 検索ボタン */
+    .search-btn{    
+      background-color: #0077d7;
+      color: white;
+      font-size: 16px;
+    }
+    .search-box input[type="submit"] {
+      margin-top: 5px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    
+    .search-box input[type="submit"]:hover {
+      opacity: 0.85;
+    }
+  .container {
+    min-width: 1200px; /* 最小幅を確保して潰れ防止 */
+    margin: auto;
+  }
+  
+  .action-buttons{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  
+  input[type="text"],
+  input[type="search"] {
+    padding: 8px;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 90%;
+    border-collapse: collapse;
+    background: white;
+    min-width: 1200px;
+    
+  }
+  
+  th {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    background-color: #0077d7;
+    color: white;
+  }
+  
+  td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    color: black;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f6fc;
+  }
+  
+  .icon-true {
+    color: rgb(0, 102, 255);
+  }
+  .icon-false {
+    color: red;
+  }
+  
+  
+  .action-buttons form:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .action-buttons-register {
+    border: none;
+    color: white;
+    background-color: #0077d7;
+  }
+  
+  .action-buttons-edit {
+    border: none;
+    color: white;
+    background-color: #0077d7;
+  }
+  
+  .action-buttons-delete {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    background-color: #0077d7;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .checkbox-cell {
+    width: 40px;
+  }
+  
+  /* true/false 表示用スタイル */
+  .bool {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+  }
+  
+  #searchBtn :hover:not(:disabled) {
+    background-color:#0077d7;
+    transform: translateY(-3px);
+  }
+  
+  .bool.true {
+    color: #0077d7;
+  }
+  
+  .bool.false {
+    color: #e74c3c;
+  }
+  
+  
+  
+  
+  .action-buttons button{
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    background-color: #0077d7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  
+  /* ホバー時に少し浮かせる */
+  .action-buttons button:hover:not(:disabled) {
+    transform: translateY(-3px);
+  }
+  
+  /* 無効時のスタイル */
+  .action-buttons button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .logout-area {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    min-width: 1200px;
+    margin: auto;
+    padding-top: 50px; /* ログアウトエリアの高さ + 余裕 */
+  }
+  .depreciated-row {
+    background-color: #f5bdbd !important;
+  }
+  /* body全体を縦方向flexにしてfooterを下部固定 */
+  html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main.main {
+    flex: 1; /* コンテンツ部分を可変にしてfooterを押し下げる */
+  }
+  
+  footer.footer {
+    margin-top: auto; /* コンテンツが少なくても最下部に配置 */
+  }
+  
+  .userCreateBtn {
+    height: 25px;
+    width: 100px;
+    color: white;
+    background-color: #28a745; /* 緑色（区別しやすいように） */
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  
+  .userCreateBtn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+  }
+  
+  
+  .userListBtn {
+    height: 25px;
+    width: 50px;
+    color: white;
+    background-color: #0077d7;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+  
+  .userListBtn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+  }
