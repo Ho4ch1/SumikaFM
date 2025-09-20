@@ -79,7 +79,6 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="checkbox-cell">チェック</th>
                                 <th>管理番号</th>
                                 <th>品名</th>
                                 <th>型番</th>
@@ -98,7 +97,6 @@
                         <tbody>
                             <tr th:each="facility : ${facilities}"
                             th:classappend="${!facility.depreciation} ? 'depreciated-row'">
-                                <td><input type="checkbox" name="selectedIds" th:value="${facility.id}" /></td>
                                 <td th:text="${facility.id}">0</td>
                                 <td th:text="${facility.product}">品名</td>
                                 <td th:text="${facility.modelNumber}">型番</td>
