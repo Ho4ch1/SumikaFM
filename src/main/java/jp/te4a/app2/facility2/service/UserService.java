@@ -71,8 +71,8 @@ public class UserService {
     
         return result.stream()
             .filter(bean -> id == null || bean.getId().equals(id))
-            .filter(bean -> username == null || bean.getUsername().equals(username))
-            .filter(bean -> role == null || bean.getRole().equals(role))
+            .filter(bean -> username == null || bean.getUsername().contains(username))
+            .filter(bean -> role == null || bean.getRole().contains(role))
             .toList();
     }
 

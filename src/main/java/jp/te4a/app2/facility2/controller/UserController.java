@@ -34,7 +34,7 @@ public class UserController {
     }
     
     @PostMapping("/userSearch")
-    public String adminSearch(
+    public String userSearch(
         @RequestParam(required = false) Integer id,
         @RequestParam(required = false) String username,
         @RequestParam(required = false) String role,

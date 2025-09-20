@@ -51,7 +51,7 @@
                                 <option th:each="i : ${ids}" th:value="${i}" th:text="${i}"></option>
                             </select>
                             ユーザーネーム:
-                            <select class="pulldown-menu" name="username">
+                            <select class="pulldown-menu" name="username" th:field="*{username}">
                                 <option value="">未選択</option>
                                 <option th:each="u : ${usernames}" th:value="${u}" th:text="${u}"></option>
                             </select>
