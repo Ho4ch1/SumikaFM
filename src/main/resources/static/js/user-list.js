@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.textContent = "閉じる";
         } else {
             searchBox.style.display = "none";
-            toggleBtn.textContent = "設備検索";
+            toggleBtn.textContent = "ユーザー検索";
         }
     });
     const checkboxes = document.querySelectorAll('input[name="selectedIds"]');
