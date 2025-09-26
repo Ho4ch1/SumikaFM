@@ -26,8 +26,8 @@
                         </span>
                         <span sec:authentication="principal.username">duke</span>
                     </p>
-                    <form th:action="@{/admin}" method="get">
-                        <input class="userListBtn" type="submit" value="TOP" />
+                    <form th:action="@{/admin/list}" method="get">
+                        <input class="userListBtn" type="submit" value="設備一覧" />
                     </form>
                     <form th:action="@{/logout}" method="post">
                         <input class="logoutBtn" type="submit" value="ログアウト" />

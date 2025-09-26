@@ -14,13 +14,13 @@ public class AdminUserInitializer {
     @Bean
     public CommandLineRunner initAdminUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            userRepository.findByUsername("a").ifPresentOrElse(
+            userRepository.findByUsername("hitonai").ifPresentOrElse(
                 user -> {
                 },
                 () -> {
                     UserBean admin = new UserBean();
-                    admin.setUsername("a");
-                    admin.setPassword(passwordEncoder.encode("a")); // 初期パスワード
+                    admin.setUsername("hitonai");
+                    admin.setPassword(passwordEncoder.encode("password")); // 初期パスワード
                     admin.setRole("ROLE_ADMIN");
                     userRepository.save(admin);
                 }

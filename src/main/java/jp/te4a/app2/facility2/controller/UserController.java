@@ -87,7 +87,7 @@ public class UserController {
     @PostMapping(path="create")
     String create(@Validated UserForm form, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            return list(model);
+            return "auth/create-user";
         }
         try {
             userService.create(form);

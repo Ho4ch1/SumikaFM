@@ -26,8 +26,8 @@
                         </span>
                         <span sec:authentication="principal.username">duke</span>
                     </p>
-                    <form th:action="@{/admin}" method="get">
-                        <input class="userListBtn" type="submit" value="TOP" />
+                    <form th:action="@{/admin/list}" method="get">
+                        <input class="userListBtn" type="submit" value="設備一覧" />
                     </form>
                   <form th:action="@{/logout}" method="post">
                       <input class="logoutBtn" type="submit" value="ログアウト" />
@@ -45,6 +45,12 @@
                     <div th:if="${error}" >
                         <p  class="error" th:text="${error}"></p>
                     </div>
+
+                    <!-- エラー表示 -->
+                    <div th:if="${#fields.hasErrors('password')}" class="error">
+                        <p th:errors="*{password}"></p>
+                    </div>
+
                     <div class="input-group">  
                         <span class="input-icon-box">
                             <i class="fa fa-user"></i>
@@ -56,8 +62,10 @@
                         <span class="input-icon-box">
                             <i class="fa fa-lock"></i>
                         </span>
-                        <input class="form-control" type="text" name="password" th:field="*{password}" placeholder="パスワード" th:errorclass="error-input" />
-                    </div> 
+                        <input class="form-control" type="password" name="password" 
+                               th:field="*{password}" placeholder="パスワード" th:errorclass="error-input" />
+                    </div>
+                    
 
                     <div class="select-group">
                         <span class="select-icon-box">
